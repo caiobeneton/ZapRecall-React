@@ -12,6 +12,7 @@ export default function Card({idx, Q, R, setContador, contador}){
     const [exibe, setExibe] = useState(Q)
     const [final, setFinal] = useState(false)
     const [icone, setIcone] = useState(play)
+    const [cor, setCor] = useState('#333333')
 
     function finaliza(){
         setExibe(R)
@@ -22,17 +23,20 @@ export default function Card({idx, Q, R, setContador, contador}){
         setContador(contador + 1)
         if (resp === 'errado') {
             setIcone(errado)
+            setCor('#FF3030')
         } else if (resp === 'quase') {
             setIcone(quase)
+            setCor('#FF922E')
         } else if (resp === 'certo') {
             setIcone(certo)
+            setCor('#2FBE34')
         }
         setAtivo(false)
     }
 
     return(
         <Carta ativo={ativo}>
-            <Cover ativo={ativo}>
+            <Cover cor={cor} ativo={ativo}>
                 <p>Pergunta {idx+1}</p>
                 <img onClick={() => setAtivo(!ativo)} src={icone} alt={icone}></img>
             </Cover>
@@ -82,10 +86,17 @@ const Cover = styled.div`
         width: 20px;
         cursor: pointer;
     }
+    p {
+        color: ${props => props.cor};
+        text-decoration: ${props => props.cor !== '#333333' ? 'line-through' : 'initial'};
+    }
 `
 
 const Cover2 = styled(Cover)`
     flex-direction: ${props => props.ativo ? 'initial' : 'column'};
+    p {
+        text-decoration: none;
+    }
 `
 
 const Info = styled.div`
