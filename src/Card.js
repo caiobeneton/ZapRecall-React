@@ -21,10 +21,17 @@ export default function Card({idx, Q, R, setContador, contador}){
                 <p>Pergunta {idx+1}</p>
                 <img onClick={() => setAtivo(!ativo)} src={play} alt={play}></img>
             </Cover>
-            <Cover final={final} ativo={!ativo}>
-                <p>{exibe}</p>
-                <img onClick={finaliza} src={vira} alt={vira}></img>
-            </Cover>
+            <Cover2 final={final} ativo={!ativo}>
+                <Info>
+                    <p>{exibe}</p>
+                    <img onClick={finaliza} src={vira} alt={vira}></img>
+                </Info>
+                <ContainerBotoes>
+                    <button>Não Lembrei</button>
+                    <button>Quase não lembrei</button>
+                    <button>Zap!</button>
+                </ContainerBotoes>
+            </Cover2>
             
         </Carta>
     )
@@ -57,5 +64,49 @@ const Cover = styled.div`
     width: 100%;
     img {
         display: ${props => props.final ? 'none' : 'initial'};
+        width: 20px;
+    }
+`
+
+const Cover2 = styled(Cover)`
+    flex-direction: ${props => props.ativo ? 'initial' : 'column'};
+`
+
+const Info = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+`
+
+const ContainerBotoes = styled.div`
+    display: flex;
+    //width: 80%;
+    justify-content: space-between;
+    //margin: 20px;
+    button {
+        width: 90px;
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 5px;
+        padding:5px;
+    }
+    button:nth-child(1) {
+        background: #FF3030;
+    }
+    button:nth-child(2) {
+        background: #FF922E;
+    }
+    button:nth-child(3) {
+        background: #2FBE34;
     }
 `
