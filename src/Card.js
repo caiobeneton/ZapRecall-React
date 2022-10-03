@@ -2,24 +2,39 @@ import { useState } from "react"
 import styled from "styled-components"
 import play from './img/seta_play.png'
 import vira from './img/seta_virar.png'
+import certo from './img/icone_certo.png'
+import errado from './img/icone_erro.png'
+import quase from './img/icone_quase.png'
 
 export default function Card({idx, Q, R, setContador, contador}){
 
     const [ativo, setAtivo] = useState(false)
     const [exibe, setExibe] = useState(Q)
     const [final, setFinal] = useState(false)
+    const [icone, setIcone] = useState(play)
 
     function finaliza(){
         setExibe(R)
         setFinal(true)
+    }
+
+    function responde(resp){
         setContador(contador + 1)
+        if (resp === 'errado') {
+            setIcone(errado)
+        } else if (resp === 'quase') {
+            setIcone(quase)
+        } else if (resp === 'certo') {
+            setIcone(certo)
+        }
+        setAtivo(false)
     }
 
     return(
         <Carta ativo={ativo}>
             <Cover ativo={ativo}>
                 <p>Pergunta {idx+1}</p>
-                <img onClick={() => setAtivo(!ativo)} src={play} alt={play}></img>
+                <img onClick={() => setAtivo(!ativo)} src={icone} alt={icone}></img>
             </Cover>
             <Cover2 final={final} ativo={!ativo}>
                 <Info>
@@ -27,9 +42,9 @@ export default function Card({idx, Q, R, setContador, contador}){
                     <img onClick={finaliza} src={vira} alt={vira}></img>
                 </Info>
                 <ContainerBotoes>
-                    <button>Não Lembrei</button>
-                    <button>Quase não lembrei</button>
-                    <button>Zap!</button>
+                    <button onClick={() => responde('errado')}>Não Lembrei</button>
+                    <button onClick={() => responde('quase')}>Quase não lembrei</button>
+                    <button onClick={() => responde('certo')}>Zap!</button>
                 </ContainerBotoes>
             </Cover2>
             
@@ -65,6 +80,7 @@ const Cover = styled.div`
     img {
         display: ${props => props.final ? 'none' : 'initial'};
         width: 20px;
+        cursor: pointer;
     }
 `
 
@@ -99,6 +115,7 @@ const ContainerBotoes = styled.div`
         border: none;
         border-radius: 5px;
         padding:5px;
+        cursor: pointer;
     }
     button:nth-child(1) {
         background: #FF3030;
