@@ -35,20 +35,20 @@ export default function Card({idx, Q, R, setContador, contador}){
     }
 
     return(
-        <Carta ativo={ativo}>
+        <Carta data-identifier="flashcard" ativo={ativo}>
             <Cover cor={cor} ativo={ativo}>
                 <p>Pergunta {idx+1}</p>
-                <img onClick={() => setAtivo(!ativo)} src={icone} alt={icone}></img>
+                <img data-identifier="flashcard-show-btn flashcard-status" onClick={() => setAtivo(!ativo)} src={icone} alt={icone}></img>
             </Cover>
-            <Cover2 final={final} ativo={!ativo}>
+            <Cover2 data-identifier="flashcard-index-item" final={final} ativo={!ativo}>
                 <Info>
-                    <p>{exibe}</p>
-                    <img onClick={finaliza} src={vira} alt={vira}></img>
+                    <p data-identifier="flashcard-question flashcard-answer" >{exibe}</p>
+                    <img data-identifier="flashcard-turn-btn" onClick={finaliza} src={vira} alt={vira}></img>
                 </Info>
                 <ContainerBotoes>
-                    <button onClick={() => responde('errado')}>Não Lembrei</button>
-                    <button onClick={() => responde('quase')}>Quase não lembrei</button>
-                    <button onClick={() => responde('certo')}>Zap!</button>
+                    <button data-identifier="forgot-btn" onClick={() => responde('errado')}>Não Lembrei</button>
+                    <button data-identifier="almost-forgot-btn" onClick={() => responde('quase')}>Quase não lembrei</button>
+                    <button data-identifier="zap-btn" onClick={() => responde('certo')}>Zap!</button>
                 </ContainerBotoes>
             </Cover2>
             

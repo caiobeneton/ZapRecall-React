@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export default function Footer({contador}){
     return (
-        <FooterConcluidos>
+        <FooterConcluidos data-identifier="flashcard-counter">
             <h1>{contador}/8 CONCLUÍDOS</h1>
         </FooterConcluidos>
     )
