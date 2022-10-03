@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default function Footer(){
+export default function Footer({contador}){
     return (
         <FooterConcluidos>
             <ContainerBotoes>
@@ -8,7 +8,7 @@ export default function Footer(){
                 <button>Quase não lembrei</button>
                 <button>Zap!</button>
             </ContainerBotoes>
-            <h1>0/4 CONCLUÍDOS</h1>
+            <h1>{contador}/8 CONCLUÍDOS</h1>
         </FooterConcluidos>
     )
 }
