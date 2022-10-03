@@ -1,5 +1,11 @@
+import Main from './Main'
+import Footer from './Footer'
+
 export default function App(){
     return(
-        <h1>Olá mundo!</h1>
+        <>
+            <Main></Main>
+            <Footer></Footer>
+        </>
     )
 }
