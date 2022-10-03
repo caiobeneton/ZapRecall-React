@@ -1,6 +1,7 @@
 import perguntas from './Perguntas'
 import styled from 'styled-components'
 import logo from './img/logo.png'
+import Card from './Card'
 
 export default function Main() {
 
@@ -10,7 +11,7 @@ export default function Main() {
                 <img src={logo} alt={logo}></img>
                 <h1>ZapRecall</h1>
             </LogoConatiner>
-            {perguntas.map((p) => <h1>{p.Q}</h1>)}
+            {perguntas.map((p, idx) => <Card key={idx} idx={idx} Q={p.Q} R={p.R}></Card>)}
         </ScreenContainer>
     )
 }
